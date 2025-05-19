@@ -1,0 +1,209 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Phikita | Dataset</title>
+    <style>
+        /* Same Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f8f7;
+            color: #333;
+        }
+
+        /* Header */
+        #header {
+            height: 90px;
+            background: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        #logo {
+            background-image: url("{% static 'logo2.jpg' %}");
+            background-repeat: no-repeat;
+            height: 65px;
+            width: 65px;
+            background-size: cover;
+            margin-top: 2px;
+            margin-left: 10px;
+        }
+
+        #header ul {
+            list-style: none;
+            display: flex;
+            gap: 25px;
+            margin: 0;
+            padding: 0;
+        }
+
+        #header ul li a {
+            color: #488f71;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        #header ul li a:hover {
+            color: #06302b;
+        }
+
+        #header button {
+            background-color: #488f71;
+            color: #ffffff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-size: 15px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        #header button a {
+            color: #ffffff;
+            text-decoration: none;
+        }
+
+        #header button:hover {
+            background-color: #06302b;
+        }
+
+        /* Dataset Section */
+        #dataset-hero {
+            background: #488f71;
+            padding: 60px 20px;
+            text-align: center;
+            color: #ffffff;
+        }
+
+        #dataset-hero h1 {
+            font-size: 40px;
+            margin-bottom: 10px;
+        }
+
+        #dataset-hero p {
+            font-size: 18px;
+            color: #e0f2f1;
+        }
+
+        #dataset-content {
+            background: #ffffff;
+            padding: 40px;
+            max-width: 1000px;
+            margin: 40px auto;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        #dataset-content h2 {
+            color: #0077b6;
+            margin-bottom: 20px;
+        }
+
+        #dataset-content p, ul {
+            font-size: 1.1em;
+            line-height: 1.6;
+        }
+
+        ul {
+            list-style: disc;
+            padding-left: 40px;
+        }
+
+        a.download-link {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 25px;
+            background-color: #06302b;
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        a.download-link:hover {
+            background-color: #011d1a;
+        }
+
+        /* Footer */
+        #footer {
+            background: #e0f2f1;
+            padding: 30px 10px;
+            text-align: center;
+            font-size: 14px;
+            margin-top: 40px;
+        }
+
+        @media (max-width: 600px) {
+            #header ul {
+                flex-direction: column;
+                align-items: center;
+            }
+            #header ul li {
+                margin-bottom: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Header -->
+<div id="header">
+    <div id="logo"></div>
+    <ul>
+        <li>{% if user.is_authenticated %}
+    <a href="{% url 'project_home' %}">HOME</a>
+{% else %}
+    <a href="{% url 'home' %}">HOME</a>
+{% endif %}
+</li>
+        <li><a href="{% url 'dataset' %}">DATASET</a></li>
+        <li><a href="{% url 'contactus' %}">CONTACT</a></li>
+    </ul>
+    <button><a href="{% url 'signup' %}">SIGNUP</a></button>
+</div>
+
+<!-- Hero Section -->
+<div id="dataset-hero">
+    <h1>Our Dataset</h1>
+    <p>Explore our phishing and legitimate website datasets for research and training models.</p>
+</div>
+
+<!-- Dataset Content -->
+<div id="dataset-content">
+    <h2>About the Dataset</h2>
+    <p>
+        Our dataset includes a wide variety of URLs categorized as phishing or legitimate, extracted from reliable sources. It contains numerous features like SSL information, domain age, and URL patterns crucial for machine learning models.
+    </p>
+
+    <h2>Key Features:</h2>
+    <ul>
+        <li>Over 10,000 labeled records</li>
+        <li>Detailed URL-based features</li>
+        <li>SSL Certificate Analysis</li>
+        <li>Domain Registration Length</li>
+        <li>Third-party Website Check</li>
+        <li>Presence of '@', '-', and multiple subdomains</li>
+    </ul>
+
+    <a href="{% static 'phikitha.csv' %}" download class="download-link">Download Dataset</a>
+</div>
+
+<!-- Footer -->
+<div id="footer">
+    <p>&copy; 2025 Phikita • Stay Safe Online! | Built with ❤️ for the cybersecurity community.</p>
+</div>
+
+</body>
+</html>

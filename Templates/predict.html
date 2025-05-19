@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Phishing URL Detector</title>
+</head>
+<body>
+    <h1>🔍 Phishing Website Detection</h1>
+    <form method="post">
+        {% csrf_token %}
+        <label for="url_input">Enter URL:</label><br>
+        <input type="text" id="url_input" name="url_input" size="60" required><br><br>
+        <input type="submit" value="Check">
+    </form>
+
+    {% if result %}
+        <h3>Result:</h3>
+        <p>{{ result }}</p>
+    {% endif %}
+</body>
+</html>

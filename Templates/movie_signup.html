@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sign Up</title>
+    <style>
+        /* style.css */
+
+body.signup-page {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #141414;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.signup-container {
+    background-color: #000;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+}
+
+.signup-container h2 {
+    margin-bottom: 25px;
+    font-size: 28px;
+}
+
+.signup-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.signup-form label {
+    text-align: left;
+    margin-bottom: 5px;
+    font-weight: 500;
+}
+
+.signup-form input {
+    padding: 10px;
+    margin-bottom: 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #333;
+    color: #fff;
+}
+
+.signup-form input::placeholder {
+    color: #aaa;
+}
+
+.signup-form button {
+    padding: 12px;
+    background-color: #e50914;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.signup-form button:hover {
+    background-color: #f40612;
+}
+
+.back-link {
+    margin-top: 20px;
+    display: inline-block;
+    color: #bbb;
+    text-decoration: none;
+}
+
+.back-link:hover {
+    color: #fff;
+}
+
+    </style>
+</head>
+<body class="signup-page">
+
+    <div class="signup-container">
+        <h2>Sign Up</h2>
+        <form method="POST" class="signup-form">
+            <label for="name">Full Name</label>
+            <input type="text" id="name" name="name" placeholder="Your name">
+
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="you@example.com">
+
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" placeholder="Enter password">
+
+            <label for="confirm_password">Confirm Password</label>
+            <input type="text" id="confirm_password" name="confirm_password" placeholder="Confirm password">
+
+            <button type="submit">Create</button>
+            
+        </form>
+        <a href="{% url 'acc_home' %}" class="back-link">Back to Home</a>
+        <a href="{% url 'login' %}" class="back-link">Already have an Account</a>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,248 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Phikita | Phishing Detector</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f8f7;
+            color: #333;
+        }
+
+        /* Header */
+        #header {
+            height: 90px;
+            background: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        #logo {
+            background-image: url("{% static 'logo2.jpg' %}");
+            background-repeat: no-repeat;
+            background-size: cover;
+            height: 65px;
+            width: 65px;
+        }
+
+        #header ul {
+            list-style: none;
+            display: flex;
+            gap: 25px;
+            margin: 0;
+            padding: 0;
+        }
+
+        #header ul li a {
+            color: #488f71;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        #header ul li a:hover {
+            color: #06302b;
+        }
+
+        #header .buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        #header button {
+            background-color: #488f71;
+            color: #ffffff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-size: 15px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        #header button a {
+            color: #ffffff;
+            text-decoration: none;
+        }
+
+        #header button:hover {
+            background-color: #06302b;
+        }
+
+        /* Hero Section */
+        #body {
+            background: #488f71;
+            padding: 60px 20px 40px;
+            text-align: center;
+        }
+
+        #body h1 {
+            color: #ffffff;
+            margin-bottom: 10px;
+            font-size: 40px;
+        }
+
+        #body h3 {
+            color: #e0f2f1;
+            font-weight: normal;
+            margin-bottom: 20px;
+            font-size: 20px;
+        }
+
+        #body p.login-info {
+            color: #ffffff;
+            font-size: 18px;
+            margin-bottom: 40px;
+        }
+
+        #body p.login-info a {
+            color: #e0f2f1;
+            font-weight: bold;
+            text-decoration: underline;
+        }
+
+        #info-box {
+            background: #ffffff;
+            padding: 30px 40px;
+            max-width: 800px;
+            margin: 0 auto;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            text-align: left;
+        }
+
+        #info-box p {
+            font-size: 1.1em;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        #info-box p strong {
+            color: #06302b;
+        }
+
+        /* Main Sections */
+        main {
+            padding: 40px 20px;
+            max-width: 1000px;
+            margin: 40px auto;
+        }
+
+        section {
+            background: #ffffff;
+            padding: 30px;
+            margin-bottom: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+        }
+
+        section:hover {
+            transform: translateY(-5px);
+        }
+
+        h2 {
+            color: #0077b6;
+            margin-bottom: 20px;
+        }
+
+        p, ul {
+            font-size: 1.1em;
+            line-height: 1.6;
+        }
+
+        ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        ul li {
+            margin-bottom: 10px;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .warning {
+            color: red;
+            font-weight: bold;
+        }
+
+        /* Footer */
+        #footer {
+            background: #e0f2f1;
+            padding: 30px 10px;
+            text-align: center;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div id="header">
+        <div id="logo"></div>
+        <ul>
+            <li><a href="#home">HOME</a></li>
+            <li><a href="{% url 'dataset' %}">DATASET</a></li>
+            <li><a href="{% url 'contactus' %}">CONTACT</a></li>
+        </ul>
+        <div class="buttons">
+            <!-- <button><a href="{% url 'login' %}">LOGIN</a></button> -->
+            <button><a href="{% url 'signup' %}">SIGNUP</a></button>
+            <button><a href="{% url 'admin_login' %}">ADMIN LOGIN</a></button>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <div id="body">
+        <h1>Welcome to Phishing Detector</h1>
+        <h3>Empowering users to stay safe online by identifying malicious websites.</h3>
+
+        <div id="info-box">
+            <p><strong>Phikita</strong> is an advanced phishing detection platform designed to help individuals, educators, and organizations identify and avoid malicious websites.</p>
+            <p>In the age of digital communication, phishing attacks have become increasingly sophisticated, targeting unsuspecting users through deceptive URLs and seemingly legitimate interfaces.</p>
+            <p>This platform uses intelligent algorithms and constantly updated datasets to recognize suspicious behavior and alert users to potential threats.</p>
+            <p>Whether you're a casual internet user, a cybersecurity enthusiast, or a professional, Phikita provides the tools and knowledge necessary to guard against online deception.</p>
+        </div>
+        <p class="login-info">
+            To check, make sure to <a href="{% url 'signup' %}" style="text-decoration: none; color: black;">SIGN-UP</a>, or if you already have an account, please <a href="{% url 'login' %}" style="text-decoration: none;    color:black;">LOG-IN</a>.
+        </p>
+    </div>
+
+    <!-- Main Sections -->
+    <main>
+        <section id="home">
+            <h2>Home</h2>
+            <p>Welcome to our guide on detecting phishing websites. Every year, millions fall prey to scams online. Knowing how to spot fake websites is your first line of defense!</p>
+        </section>
+
+        <section id="about">
+            <h2>About Phishing</h2>
+            <p>Phishing is a cyber attack method where scammers pretend to be legitimate institutions to steal personal information. These attacks are often carried out via email, fake websites, or text messages that look real but are actually traps.</p>
+        </section>
+
+        <section id="tips">
+            <h2>Tips to Detect a Phishing Website</h2>
+            <ul>
+                <li>Always double-check the <span class="warning">URL</span> for spelling mistakes or weird domain endings.</li>
+                <li>Look for <span class="warning">HTTPS</span> and a padlock icon before entering sensitive information.</li>
+                <li>Beware of <span class="warning">urgent requests</span> asking you to "act fast" or "verify now".</li>
+                <li>Never click suspicious <span class="warning">links</span> from unknown senders.</li>
+                <li>Contact the company <span class="warning">directly</span> using a verified number or website.</li>
+            </ul>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <div id="footer">
+        <p>&copy; 2025 Phikita • Stay Safe Online! | Built with ❤️ for the cybersecurity community.</p>
+    </div>
+</body>
+</html>
