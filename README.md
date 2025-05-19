@@ -2,8 +2,6 @@
 
 A full-stack Django-based web application that detects phishing websites using a deep learning model (ABS-CNN). This project is powered by a custom-trained neural network and provides real-time prediction, visualization, and user tracking.
 
-![Demo Screenshot](path/to/screenshot.png) <!-- optional -->
-
 ---
 
 ## 🔍 Project Overview
@@ -46,7 +44,7 @@ We developed a custom CNN architecture enhanced with **attention mechanisms** to
 This project uses the dataset from the research paper:
 
 **“Phikita: Phishing Kit Attacks Dataset for Phishing Website Identification”**  
-➡️ [Download Paper](https://www.researchgate.net/publication/366337941_PhiKitA_Phishing_Kit_Attacks_Dataset_for_Phishing_Websites_Identification)
+➡️ [Download Paper](https://ieeexplore.ieee.org/document/10103863)
 
 ---
 
