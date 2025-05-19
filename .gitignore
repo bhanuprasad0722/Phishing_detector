@@ -1,0 +1,13 @@
+__pycache__/
+*.pyc
+db.sqlite3
+.env
+media/
+staticfiles/
+*.pkl
+*.h5
+*.pyd
+*.log
+*.idea/
+.vscode/
+*.ipynb_checkpoints/
