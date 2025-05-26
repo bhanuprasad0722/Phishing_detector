@@ -97,7 +97,7 @@ model.summary()
 # STEP 5: Train and Evaluate
 # ---------------------------
 model.fit(X_train, y_train, epochs=40, batch_size=32, validation_split=0.2, class_weight=class_weights)
-# loss, accuracy = model.evaluate(X_test, y_test)
-# print(f"🎯 Final Accuracy: {accuracy * 100:.2f}%")
-joblib.dump(model, 'detection_model.pkl')
-joblib.dump(scaler,'scaler.pkl')
+loss, accuracy = model.evaluate(X_test, y_test)
+print(f"🎯 Final Accuracy: {accuracy * 100:.2f}%")
+# joblib.dump(model, 'detection_model.pkl')
+# joblib.dump(scaler,'scaler.pkl')
