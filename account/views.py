@@ -392,7 +392,7 @@ def upload_dataset(request):
                 status=row['status'],
                 page_rank=row['page_rank']
             )
-        retrain_model()
+        #retrain_model()
         return redirect('admin_home')
 
 
