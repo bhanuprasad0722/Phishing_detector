@@ -213,7 +213,7 @@ def logout_page(request):
         logout(request)
         
         if is_admin:
-            return redirect('admin_login')  # name of your admin login url
+            return redirect('admin_login') 
         else:
             return redirect('login')  # normal user login
     return redirect('login')
