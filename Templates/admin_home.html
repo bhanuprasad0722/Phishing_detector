@@ -345,11 +345,37 @@ section th {
         <form method="post" enctype="multipart/form-data" action="{% url 'upload_dataset' %}">
             {% csrf_token %}
             <input type="file" name="csv_file" accept=".csv" required>
-            <button type="submit">Upload Dataset</button>
+            <button
+             style="
+    background-color: #488f71;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 18px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: white;
+    padding: 5px;
+    margin-left: 100px;
+    margin-top: 50px;
+    text-align: center;
+    cursor: pointer;" 
+            type="submit">Upload Dataset</button>
         </form>
-        <form method="post" action="{% url 'retrain_model'%}">
+        <form method="post" action="{% url 'retrain_trigger'%}">
             {%csrf_token %}
-            <button type="submit">Retrain Model</button>
+            <button
+            style="
+    background-color: #488f71;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 18px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: white;
+    padding: 5px;
+    margin-left: 360px;
+    margin-top: 50px;
+    text-align: center;
+    cursor: pointer;" 
+            type="submit">Retrain Model</button>
 
         </form>
         </section>

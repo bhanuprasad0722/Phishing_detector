@@ -340,28 +340,46 @@ def predict_single_url(url):
     else:
         return f"Legitimate Website ({(1 - prediction) * 100:.2f}% confidence)"
     
+def retrain_trigger(request):
+    if request.method == "POST":
+        retrain_model()
+        messages.success(request, "✅ Model retrained successfully.")
+    return redirect('admin_home')
+    
 #code for retrainig and uploading the dataset
 def retrain_model():
+    from .models import ModelAccuracy
+    import time
+    start_time = time.time()
+    print("🔁 Starting model retraining...")
+
     queryset = UrlDataset.objects.all()
+    if not queryset.exists():
+        print("🚫 No data to train.")
+        return
+
     df = pd.DataFrame(list(queryset.values('website', 'status', 'page_rank')))
     df['status'] = df['status'].apply(lambda x: 1 if x == 'phishing' else 0)
-    
+
     feature_data = df['website'].apply(lambda x: pd.Series(extract_advanced_features(x)))
     feature_data['page_rank'] = df['page_rank']
-    
+
     X = feature_data
     y = df['status'].values
 
+    # Scaling
     scaler = StandardScaler()
     X_scaled = scaler.fit_transform(X)
     X_scaled = X_scaled.reshape(X_scaled.shape[0], X_scaled.shape[1], 1)
-
     joblib.dump(scaler, 'scaler.pkl')
 
+    # Train/Test Split
     X_train, X_test, y_train, y_test = train_test_split(X_scaled, y, test_size=0.2, random_state=42)
+
     weights = class_weight.compute_class_weight('balanced', classes=np.unique(y_train), y=y_train)
     class_weights = {0: weights[0], 1: weights[1]}
 
+    # Define the model
     input_layer = Input(shape=(X_scaled.shape[1], 1))
     x = Conv1D(64, kernel_size=2, activation='relu', padding='same')(input_layer)
     x = BatchNormalization()(x)
@@ -379,9 +397,18 @@ def retrain_model():
 
     model = Model(inputs=input_layer, outputs=output)
     model.compile(optimizer=Adam(0.001), loss='binary_crossentropy', metrics=['accuracy'])
+
+    # Faster training (reduce epochs if needed)
     model.fit(X_train, y_train, epochs=40, batch_size=32, validation_split=0.2, class_weight=class_weights)
+
+    # Save model
+    joblib.dump(model, 'detection_model.pkl')
+
+    # Evaluate and log accuracy
     loss, accuracy = model.evaluate(X_test, y_test)
     ModelAccuracy.objects.create(model_name="ABS-CNN", accuracy=accuracy * 100, trained_on=now())
+    print(f"✅ Retrained in {(time.time() - start_time):.2f}s | Accuracy: {accuracy * 100:.2f}%")
+
 def upload_dataset(request):
     if request.method == 'POST' and request.FILES['csv_file']:
         csv_file = request.FILES['csv_file']
@@ -392,7 +419,6 @@ def upload_dataset(request):
                 status=row['status'],
                 page_rank=row['page_rank']
             )
-        #retrain_model()
         return redirect('admin_home')
 
 

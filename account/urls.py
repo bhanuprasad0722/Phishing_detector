@@ -19,7 +19,7 @@ urlpatterns = [
     path('admin_login/',views.admin_login,name="admin_login"),
     path('admin_home',views.admin_home,name="admin_home"),
     path('upload_dataset/', views.upload_dataset, name='upload_dataset'),
-    path('retrain_model/',views.retrain_model,name="retrain_model"),
+    path('retrain_trigger/',views.retrain_trigger,name="retrain_trigger"),
     path('login_info/', views.login_info, name='login_info'),
 
 ]
