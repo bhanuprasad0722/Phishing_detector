@@ -345,7 +345,12 @@ section th {
         <form method="post" enctype="multipart/form-data" action="{% url 'upload_dataset' %}">
             {% csrf_token %}
             <input type="file" name="csv_file" accept=".csv" required>
-            <button type="submit">Upload & Retrain</button>
+            <button type="submit">Upload Dataset</button>
+        </form>
+        <form method="post" action="{% url 'retrain_model'%}">
+            {%csrf_token %}
+            <button type="submit">Retrain Model</button>
+
         </form>
         </section>
 
