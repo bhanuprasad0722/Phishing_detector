@@ -9,20 +9,19 @@ from tensorflow.keras.models import load_model # type: ignore
 from sklearn.preprocessing import StandardScaler
 import joblib
 from django.contrib.auth import get_user_model
-import os
-import pandas as pd
 import numpy as np
-import joblib
-import matplotlib.pyplot as plt
-from datetime import datetime
-from django.utils.timezone import now
-from django.conf import settings
-from django.core.files.storage import FileSystemStorage
+from django.utils.timezone import now,localdate
 from sklearn.model_selection import train_test_split
 from sklearn.utils import class_weight
 from tensorflow.keras.layers import (Input, Conv1D, Dense, Flatten, Dropout, Multiply,Softmax, Reshape, TimeDistributed, BatchNormalization) # type: ignore
 from tensorflow.keras.optimizers import Adam # type: ignore
 from tensorflow.keras.models import Model # type: ignore
+from django.contrib import messages
+from .models import UserActivity
+import io
+import base64
+from matplotlib.figure import Figure
+from .models import UrlDataset, ModelAccuracy, Prediction
 
 def signup(request):
     if request.method == "POST":
@@ -50,11 +49,6 @@ def admin_login(request):
     return render(request, 'admin_login.html')
 
 User = get_user_model()
-import io
-import base64
-from matplotlib.figure import Figure
-from django.utils.timezone import now, localdate
-from .models import UrlDataset, ModelAccuracy, Prediction
 
 def generate_base64_plot(fig):
     buffer = io.BytesIO()
@@ -178,9 +172,6 @@ def admin_home(request):
     })
 
 
-from .models import UserActivity
-from django.utils.timezone import now
-
 def get_client_ip(request):
     x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
     if x_forwarded_for:
@@ -218,9 +209,6 @@ def logout_page(request):
             return redirect('login')  # normal user login
     return redirect('login')
 
-from .models import UserActivity
-from django.contrib.auth.models import User
-
 def login_info(request):
     activities = UserActivity.objects.select_related('user').order_by('-timestamp')
     users = User.objects.all()
@@ -252,7 +240,6 @@ def contactus(request):
     return render(request,"contactus.html")
 def dataset(request):
     return render(request,"dataset.html")
-from django.contrib import messages
 def contactus_form(request):
     if request.method == "POST":
         name = request.POST.get("name")
