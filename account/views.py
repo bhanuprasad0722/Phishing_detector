@@ -5,7 +5,6 @@ from .models import Contact
 import re
 import pandas as pd
 from urllib.parse import urlparse
-from tensorflow.keras.models import load_model # type: ignore
 from sklearn.preprocessing import StandardScaler
 import joblib
 from django.contrib.auth import get_user_model
